@@ -13,6 +13,7 @@ public class thisisatestihatethis : MonoBehaviour
     }
 
     // Update is called once per frame
+    // This is a comment to allow for testing
     void Update()
     {
         gameObject.GetComponent<thisisatestihatethis>().transform.position += temp;
