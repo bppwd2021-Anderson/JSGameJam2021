@@ -10,6 +10,10 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 5;
     public float jumpVelocity = 10f;
     public Rigidbody2D rb;
+    public bool isGrounded = true;
+    public LayerMask groundLayer;
+    public Transform raycastPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,13 +41,26 @@ public class PlayerMovement : MonoBehaviour
         }
         #endregion
 
-        if (Input.GetButtonDown("Space"))
+        #region Player Jump
+        if (Input.GetButtonDown("Space") && isGrounded)
         {
             Debug.Log("JUMPING");
-            rb.velocity = Vector2.up * jumpVelocity;        
+            rb.velocity = Vector2.up * jumpVelocity;
+            isGrounded = false;
         }
 
-        //GetComponent<Rigidbody2D>().MovePosition(moveVector);
+        else if(!isGrounded)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(raycastPos.position, Vector2.down, 0.5f, groundLayer);
+            Debug.DrawRay(raycastPos.position, Vector2.down * 0.5f, Color.black);
+
+            if (hit.collider != null)
+            {
+                isGrounded = true;
+            }
+             
+        }
+        #endregion
     }
-   
+
 }
