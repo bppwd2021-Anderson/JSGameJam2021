@@ -22,7 +22,7 @@ public class thisisatestihatethis : MonoBehaviour
     void Update()
     {
         testMove();
-        gameObject.GetComponent<thisisatestihatethis>().transform.position += speed
+        gameObject.GetComponent<thisisatestihatethis>().transform.position += speed;
     }
     void testMove() {
 
